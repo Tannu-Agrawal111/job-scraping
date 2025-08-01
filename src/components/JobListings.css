@@ -1,0 +1,22 @@
+.job-listings-container {
+  /* height: 350px;  */
+  overflow-y: auto;
+  /* width: 350px; */
+  width: 80%;
+  height: 100%;
+  padding: 10px;
+  overflow-x: auto;
+  padding-right: 10px;
+  scroll-behavior: smooth;
+  border: 5px solid black;
+  box-shadow: 0 0 20px #d946ef;
+}
+
+.job-listings-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.job-listings-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}

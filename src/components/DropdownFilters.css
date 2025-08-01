@@ -1,0 +1,35 @@
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  gap: 10%;
+}
+
+select {
+  padding: 8px 10px;
+  background: #111;
+  color: white;
+  border: 2px solid orange;
+  border-radius: 8px;
+}
+
+.search-btn {
+  background: linear-gradient(to right, #f0f, #ff5f1f);
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 9px 20px;
+  border-radius: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+}
