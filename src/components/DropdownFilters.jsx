@@ -24,10 +24,6 @@ function handleClick(){
   props.addFilters(filters);
 }
 
-// useEffect(() => {
-//   console.log('Filters updated:', filters);
-// }, [filters]);
-
   return (
     <div className="dropdown-container">
       <div className="row">

@@ -17,9 +17,6 @@ const [filters , setFilters] = useState({
   job_type: ""
 });
 
-// 'x-rapidapi-host: jsearch.p.rapidapi.com' 
-// 'x-rapidapi-key: 9ad06951famshece3d803740909cp157532jsn9f11fa1595a8'
-
 function addFilters(filter){
   setFilters(filter);
 }
@@ -31,21 +28,16 @@ const [jobs, setJobs] = useState([]);
     const fetchJobs = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("https://jsearch.p.rapidapi.com/search", {
-          params: {
-            query: filters.job_title || "developer",
-            remote_jobs_only: filters.job_is_remote === "true" ? "true" : "false",
-            employment_types: filters.job_type || "",
-            location: filters.job_city || "India",
-            page: 1,
-          },
-          headers: {
-            'X-RapidAPI-Key': ' 9ad06951famshece3d803740909cp157532jsn9f11fa1595a8',
-            'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
-          }
-        });
+        const response = await axios.get("http://localhost:5000/api/jobs", {
+        params: {
+          query: filters.job_title,
+          remote: filters.job_is_remote,
+          type: filters.job_type,
+          city: filters.job_city
+        }
+      });
+      setJobs(response.data.data);
 
-        setJobs(response.data.data); // Adjust based on actual API response structure
         console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching jobs:", error);
