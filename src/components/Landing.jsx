@@ -28,7 +28,7 @@ const [jobs, setJobs] = useState([]);
     const fetchJobs = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/api/jobs", {
+        const response = await axios.get("https://job-scraping-backend.onrender.com/api/jobs", {
         params: {
           query: filters.job_title,
           remote: filters.job_is_remote,
