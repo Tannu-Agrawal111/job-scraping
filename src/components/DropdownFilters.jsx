@@ -1,79 +1,84 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState } from 'react';
 import './DropdownFilters.css';
+import { FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
 
 const DropdownFilters = (props) => {
+  const [filters, setFilters] = useState({
+    job_title: "",
+    job_city: "",
+    job_is_remote: "",
+    job_type: ""
+  });
 
-const [filters , setFilters] = useState({
-  job_title : "" ,
-  job_city : "",
-  job_is_remote : "",
-  job_type : ""
-});
-
-
-function handleChange(e){
-  const {name , value} = e.target;
-  setFilters((prevVal) => {
-  return {
-    ...prevVal , [name] : value
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFilters((prevVal) => {
+      return {
+        ...prevVal, [name]: value
+      }
+    })
   }
-})
-}
 
-function handleClick(){
-  props.addFilters(filters);
-}
+  function handleClick() {
+    props.addFilters(filters);
+  }
 
   return (
     <div className="dropdown-container">
-      <div className="row">
-        <select name="job_title" onChange={(e)=>{
-          handleChange(e);
-        }} >
-          <option value="">Select Job Title</option>
-          <option value="frontend">Frontend Developer</option>
-          <option value="backend">Backend Developer</option>
-          <option value="fullstack">Full Stack Developer</option>
-        </select>
+      <div className="filter-grid">
+        <div className="filter-group">
+          <label className="filter-label">Job Title / Role</label>
+          <div className="input-with-icon">
+            <FaSearch className="field-icon" />
+            <input 
+              type="text" 
+              name="job_title" 
+              placeholder="e.g. Frontend, Backend..." 
+              value={filters.job_title}
+              onChange={handleChange}
+              className="text-input"
+            />
+          </div>
+        </div>
 
-        <select name="job_city" onChange={(e)=>{
-          handleChange(e);
-        }}>
-          <option value="">Select Location</option>
-          <option value="remote">Remote</option>
-          <option value="delhi">Delhi</option>
-          <option value="mumbai">Mumbai</option>
-        </select>
+        <div className="filter-group">
+          <label className="filter-label">Location</label>
+          <div className="input-with-icon">
+            <FaMapMarkerAlt className="field-icon" />
+            <input 
+              type="text" 
+              name="job_city" 
+              placeholder="e.g. Mumbai, Delhi, Remote..." 
+              value={filters.job_city}
+              onChange={handleChange}
+              className="text-input"
+            />
+          </div>
+        </div>
 
-        <select name="job_is_remote" onChange={(e)=>{
-          handleChange(e);
-        }}>
-          <option value="">Work Mode</option>
-          <option value="remote">Remote</option>
-          <option value="onsite">Onsite</option>
-          <option value="hybrid">Hybrid</option>
-        </select>
+        <div className="filter-group">
+          <label className="filter-label">Work Mode</label>
+          <select name="job_is_remote" onChange={handleChange} className="select-input">
+            <option value="">Any Mode</option>
+            <option value="true">Remote</option>
+            <option value="false">Onsite</option>
+          </select>
+        </div>
+
+        <div className="filter-group">
+          <label className="filter-label">Job Type</label>
+          <select name="job_type" onChange={handleChange} className="select-input">
+            <option value="">Any Type</option>
+            <option value="fulltime">Full-Time</option>
+            <option value="parttime">Part-Time</option>
+            <option value="internship">Internship</option>
+          </select>
+        </div>
       </div>
 
-      <div className="row" onChange={(e)=>{
-        handleChange(e);
-      }}>
-        <select name="job_type">
-          <option value="">Job Type</option>
-          <option value="internship">Internship</option>
-          <option value="parttime">Part-Time</option>
-          <option value="fulltime">Full-Time</option>
-        </select>
-
-        <select name="experienceLevel">
-          <option value="">Experience Level</option>
-          <option value="fresher">Fresher</option>
-          <option value="0-1">0-1 years</option>
-          <option value="2plus">2+ years</option>
-        </select>
-      </div>
-
-      <button onClick={(e)=>{e.preventDefault(); handleClick()}} className="search-btn">Search</button>
+      <button onClick={(e) => { e.preventDefault(); handleClick() }} className="search-button">
+        Search Opportunities
+      </button>
     </div>
   );
 };

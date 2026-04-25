@@ -1,54 +1,70 @@
-import './Home.css'
-import {useNavigate} from "react-router-dom";
+import './Home.css';
+import { useNavigate } from "react-router-dom";
+import { FaRocket, FaCheckCircle, FaSearch } from 'react-icons/fa';
 
 const Home = () => {
   const navigate = useNavigate();
 
-  function handleLogin(){
-    navigate("/login");
-  }
-
-  function handleSignup(){
-    navigate("/signup");
-  }
-
   return (
-    <div className="container">
-    <div className="left">
-      <div className="logo-section">
-        <div className="logo-circle">
-          <span className="logo-text">A</span>
+    <div className="home-container">
+      <div className="home-overlay"></div>
+      
+      <nav className="home-nav">
+        <div className="nav-logo">
+          Job<span>Scout</span>
         </div>
-        <h2 className="brand-name">CareerLaunch</h2>
-      </div>
-
-      <h1 className="main-text">
-        <span class="highlight">Your Next Career</span><br />
-        <span class="highlight">Move Starts Here</span>
-      </h1>
-
-      <p className="description">
-        Join <span className="light">thousands</span> of professionals who have found their dream jobs through our platform.
-      </p>
-
-      <div className="category-buttons">
-        <button className="btn purple">Corporate</button>
-        <button className="btn pink">Tech</button>
-        <button className="btn orange">Creative</button>
-      </div>
-    </div>
-
-    <div className="right">
-      <div className="form-card">
-        <h2>Create your account</h2>
-        <div className="form-buttons">
-          <button onClick={handleLogin} className="form-btn">login</button>
-          <button onClick={handleSignup} className="form-btn">SignUp</button>
+        <div className="nav-btns">
+          <button onClick={() => navigate("/login")} className="nav-login">Login</button>
+          <button onClick={() => navigate("/signup")} className="nav-signup">Get Started</button>
         </div>
-      </div>
-    </div>
-  </div>
-  )
-}
+      </nav>
 
-export default Home
+      <main className="home-hero">
+        <div className="hero-content">
+          <div className="badge glass-effect">
+            <FaRocket /> <span>#1 Job Search Platform</span>
+          </div>
+          <h1 className="hero-title">
+            Land Your <span>Dream Job</span> <br />With One Click.
+          </h1>
+          <p className="hero-text">
+            Connect with top-tier companies and explore thousands of opportunities tailored just for you. Your career evolution begins here.
+          </p>
+          
+          <div className="hero-actions">
+            <button onClick={() => navigate("/signup")} className="primary-btn">
+              Explore Opportunities <FaSearch size={14} />
+            </button>
+            <div className="hero-stats">
+              <div className="stat">
+                <strong>10k+</strong> <span>Jobs Added</span>
+              </div>
+              <div className="stat">
+                <strong>500+</strong> <span>Companies</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-visual">
+          <div className="visual-card glass-effect animate-up">
+            <FaCheckCircle className="visual-icon" />
+            <div>
+              <h4>Real-time Tracking</h4>
+              <p>Get notified as soon as you get a match.</p>
+            </div>
+          </div>
+          <div className="visual-card glass-effect animate-down">
+            <FaSearch className="visual-icon pink" />
+            <div>
+              <h4>Smart Filters</h4>
+              <p>Find jobs that actually match your skills.</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default Home;

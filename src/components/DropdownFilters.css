@@ -1,35 +1,98 @@
 .dropdown-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 80%;
-  margin-bottom: 10px;
+  gap: 20px;
 }
 
-.row {
+.filter-grid {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filter-group {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
   align-items: center;
-  background: #000;
-  gap: 10%;
 }
 
-select {
-  padding: 8px 10px;
-  background: #111;
-  color: white;
-  border: 2px solid orange;
-  border-radius: 8px;
+.field-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
-.search-btn {
-  background: linear-gradient(to right, #f0f, #ff5f1f);
-  border: none;
-  color: white;
-  font-weight: bold;
-  padding: 9px 20px;
-  border-radius: 8px;
-  margin-top: 5px;
+.text-input, .select-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.text-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.select-input {
+  padding-left: 16px; /* No icon for selects */
+  appearance: none;
   cursor: pointer;
+}
+
+.text-input:hover, .select-input:hover {
+  border-color: var(--primary);
+  background: var(--bg-card);
+}
+
+.text-input:focus, .select-input:focus {
+  border-color: var(--primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.search-button {
+  background: var(--primary);
+  color: white;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.search-button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+.search-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .filter-grid {
+    flex-direction: column;
+  }
 }
